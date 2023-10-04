@@ -15,7 +15,7 @@ class _myCustomDrawerState extends State<myCustomDrawer> {
 
     return Drawer(
       child: Container(
-          color: Colors.black45,
+          color: Colors.black54,
           child: SafeArea(
             child: Column(
               children: [
@@ -32,52 +32,56 @@ class _myCustomDrawerState extends State<myCustomDrawer> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
+                Divider(),
                 Container(
                   // color: Colors.white,
-                  width:width ,alignment: Alignment.centerLeft,margin: EdgeInsets.only(left: 8,top: 25),
+                  width:width ,alignment: Alignment.centerLeft,margin: EdgeInsets.only(left: 8,top: 5),
                   // height: height * .875,
                   child: Column(
                     children: [
                       Row(
                         children: [
                           IconButton(onPressed: () {} , icon: Icon(Icons.lightbulb, color: Colors.white,)),
-                          Text("Notes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)
+                          Text("Notes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),)
                         ],
                       ),
                        Row(
                         children: [
                           IconButton(onPressed: () {} , icon: Icon(Icons.lightbulb, color: Colors.white,)),
-                          Text("Reminders",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)
+                          Text("Reminders",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),)
+                        ],
+                      ),
+                      Divider(),
+                       Row(
+                        children: [
+                          IconButton(onPressed: () {} , icon: Icon(Icons.lightbulb, color: Colors.white,)),
+                          Text("Create new label",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),)
+                        ],
+                      ),
+                      Divider(),
+                       Row(
+                        children: [
+                          IconButton(onPressed: () {} , icon: Icon(Icons.lightbulb, color: Colors.white,)),
+                          Text("Archive",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),)
                         ],
                       ),
                        Row(
                         children: [
                           IconButton(onPressed: () {} , icon: Icon(Icons.lightbulb, color: Colors.white,)),
-                          Text("Create new label",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)
+                          Text("Trash",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),)
+                        ],
+                      ),
+                      Divider(),
+                       Row(
+                        children: [
+                          IconButton(onPressed: () {} , icon: Icon(Icons.lightbulb, color: Colors.white,)),
+                          Text("Settings",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),)
                         ],
                       ),
                        Row(
                         children: [
                           IconButton(onPressed: () {} , icon: Icon(Icons.lightbulb, color: Colors.white,)),
-                          Text("Archive",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)
-                        ],
-                      ),
-                       Row(
-                        children: [
-                          IconButton(onPressed: () {} , icon: Icon(Icons.lightbulb, color: Colors.white,)),
-                          Text("Trash",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)
-                        ],
-                      ),
-                       Row(
-                        children: [
-                          IconButton(onPressed: () {} , icon: Icon(Icons.lightbulb, color: Colors.white,)),
-                          Text("Settings",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)
-                        ],
-                      ),
-                       Row(
-                        children: [
-                          IconButton(onPressed: () {} , icon: Icon(Icons.lightbulb, color: Colors.white,)),
-                          Text("Help & feedback",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)
+                          Text("Help & feedback",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),)
                         ],
                       ),
                     ],
