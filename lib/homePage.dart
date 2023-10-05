@@ -90,9 +90,9 @@ class homeState extends State<home> {
         itemCount: 5000,
         itemBuilder: (context, index) {
           return Container(
-            margin: EdgeInsets.all(5),
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(border: Border.all() , ),
+            margin:const EdgeInsets.all(5),
+            padding:const EdgeInsets.all(15),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),border: Border.all(width: .05,color: Colors.black87 ) ),
             child: index.isEven ? Text("kaushik") :  Text("kaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaush")
           );
         },
