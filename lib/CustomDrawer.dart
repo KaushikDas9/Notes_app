@@ -9,7 +9,7 @@ class myCustomDrawer extends StatefulWidget {
 
 class _myCustomDrawerState extends State<myCustomDrawer> {
 
-  bool sectionOneEffect=false;bool sectionTwoEffect=false;bool sectionThreeEffect=false;bool sectionFourEffect=false;bool sectionFiveEffect=false;bool sectionSixEffect=false;bool sectionSevenEffect=false;  
+  bool sectionOneEffect=true;bool sectionTwoEffect=false;bool sectionThreeEffect=false;bool sectionFourEffect=false;bool sectionFiveEffect=false;bool sectionSixEffect=false;bool sectionSevenEffect=false;  
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -90,58 +90,10 @@ class _myCustomDrawerState extends State<myCustomDrawer> {
                       
                       Divider(),
                      sectionfour(),
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.lightbulb,
-                                color: Colors.white,
-                              )),
-                          Text(
-                            "Trash",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          )
-                        ],
-                      ),
+                      sectionfive(),
                       Divider(),
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.lightbulb,
-                                color: Colors.white,
-                              )),
-                          Text(
-                            "Settings",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.lightbulb,
-                                color: Colors.white,
-                              )),
-                          Text(
-                            "Help & feedback",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          )
-                        ],
-                      ),
+                     sectionsix(),
+                     sectionseven(),
                     ],
                   ),
                 )
@@ -174,7 +126,7 @@ class _myCustomDrawerState extends State<myCustomDrawer> {
                             child: Row(
                               children: [
                                 IconButton(
-                                    onPressed: () {},
+                                    onPressed: null,
                                     icon: const Icon(
                                       Icons.notifications,
                                       color: Colors.white,
@@ -212,9 +164,10 @@ Widget sectionthree() {
                             child: Row(
                               children: [
                                 IconButton(
-                                    onPressed: () {},
+                                    onPressed: null,
                                     icon: const Icon(
                                       Icons.add,
+                                      size: 28,
                                       color: Colors.white,
                                     )),
                                 const Text(
@@ -250,13 +203,128 @@ Widget sectionfour() {
                             child: Row(
                               children: [
                                 IconButton(
-                                    onPressed: () {},
+                                    onPressed: null,
                                     icon: const Icon(
                                       Icons.archive,
                                       color: Colors.white,
                                     )),
                                 const Text(
                                   "Archive",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+ } 
+
+Widget sectionfive() { 
+  return  Container(
+                          // color: Color.fromARGB(255, 159, 25, 25),
+                          // width: width,
+                          margin: EdgeInsets.only(right: 20),
+                          child: TextButton(
+
+                            style:sectionFiveEffect ? sectionButtonStyle() : null ,
+                            onPressed: (){ setState(() {
+                              sectionOneEffect=false;
+                              sectionTwoEffect=false;
+                              sectionThreeEffect=false;
+                              sectionFourEffect=false;
+                              sectionFiveEffect=true;
+                              sectionSixEffect=false;
+                              sectionSevenEffect=false;
+                            }); }  ,
+                            child: Row(
+                              children: [
+                                IconButton(
+                                    onPressed: null,
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: Colors.white,
+                                    )),
+                                const Text(
+                                  "Trash",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+ } 
+
+
+Widget sectionsix() { 
+  return  Container(
+                          // color: Color.fromARGB(255, 159, 25, 25),
+                          // width: width,
+                          margin: EdgeInsets.only(right: 20),
+                          child: TextButton(
+
+                            style:sectionSixEffect ? sectionButtonStyle() : null ,
+                            onPressed: (){ setState(() {
+                              sectionOneEffect=false;
+                              sectionTwoEffect=false;
+                              sectionThreeEffect=false;
+                              sectionFourEffect=false;
+                              sectionFiveEffect=false;
+                              sectionSixEffect=true;
+                              sectionSevenEffect=false;
+                            }); }  ,
+                            child: Row(
+                              children: [
+                                IconButton(
+                                    onPressed:null,
+                                    icon: const Icon(
+                                      Icons.settings,
+                                      color: Colors.white,
+                                    )),
+                                const Text(
+                                  "Setting",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+ } 
+
+Widget sectionseven() { 
+  return  Container(
+                          // color: Color.fromARGB(255, 159, 25, 25),
+                          // width: width,
+                          margin: EdgeInsets.only(right: 20),
+                          child: TextButton(
+
+                            style:sectionSevenEffect ? sectionButtonStyle() : null ,
+                            onPressed: (){ setState(() {
+                              sectionOneEffect=false;
+                              sectionTwoEffect=false;
+                              sectionThreeEffect=false;
+                              sectionFourEffect=false;
+                              sectionFiveEffect=false;
+                              sectionSixEffect=false;
+                              sectionSevenEffect=true;
+                            }); }  ,
+                            child: Row(
+                              children: [
+                                IconButton(
+                                    onPressed: null,
+                                    icon: const Icon(
+                                      Icons.help,
+                                      color: Colors.white,
+                                    )),
+                                const Text(
+                                  "Help & feedBack",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
