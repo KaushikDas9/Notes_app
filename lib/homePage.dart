@@ -21,16 +21,22 @@ class homeState extends State<home> {
       drawer: const myCustomDrawer(),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
+        
+          // height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(color: Colors.white),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
                   child: myCustomSearchBox(),
                 ),
+              ),
+              Padding(
+                padding:  EdgeInsets.only(left: 25,top:10),
+                child: Text("All"),
               ),
               myCustomGrid(),
             ],
@@ -84,8 +90,12 @@ class homeState extends State<home> {
 
   Widget myCustomGrid() {
     return Container(
-      height: MediaQuery.of(context).size.height * .845,
+      // color:  Colors.black,
+      // height: MediaQuery.of(context).size.height * .845,
       child: MasonryGridView.count(
+        padding: EdgeInsets.all(5),
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 2,
         itemCount: 5000,
         itemBuilder: (context, index) {
@@ -93,8 +103,8 @@ class homeState extends State<home> {
             margin:const EdgeInsets.all(5),
             padding:const EdgeInsets.all(15),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),border: Border.all(width: .05,color: Colors.black87 ) ),
-            child: index.isEven ? Text("kaushik") :  Text("kaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaush")
-          );
+            child:Column(crossAxisAlignment: CrossAxisAlignment.start, children: [ Text("Heading" , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)) ,index.isEven ? Text("kaushik") :  Text("kaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaush")
+          ]));
         },
       ),
     );
