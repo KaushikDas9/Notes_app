@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/CustomDrawer.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class home extends StatefulWidget {
   const home({super.key});
@@ -15,28 +16,31 @@ class homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      drawerEdgeDragWidth: MediaQuery.of(context).size.width * .4,
       key: _drawerKey,
       drawer: const myCustomDrawer(),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(color: Colors.white),
-        child: Column(
-          children: [
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                child: myCustomSearchBox(),
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(color: Colors.white),
+          child: Column(
+            children: [
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+                  child: myCustomSearchBox(),
+                ),
               ),
-            ),
-          ],
+              myCustomGrid(),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget myCustomSearchBox( ) {
+  Widget myCustomSearchBox() {
     double height = MediaQuery.of(context).size.height;
     double widght = MediaQuery.of(context).size.width;
 
@@ -60,7 +64,6 @@ class homeState extends State<home> {
               children: [
                 IconButton(
                     onPressed: () {
-                      
                       print("grid");
                     },
                     icon: Icon(Icons.grid_view)),
@@ -79,5 +82,16 @@ class homeState extends State<home> {
     );
   }
 
- 
+  Widget myCustomGrid() {
+    return Container(
+      height: MediaQuery.of(context).size.height * .845,
+      child: MasonryGridView.count(
+        crossAxisCount: 6,
+        itemCount: 5000,
+        itemBuilder: (context, index) {
+          return Text("datasd");
+        },
+      ),
+    );
+  }
 }
