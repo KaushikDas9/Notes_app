@@ -86,10 +86,15 @@ class homeState extends State<home> {
     return Container(
       height: MediaQuery.of(context).size.height * .845,
       child: MasonryGridView.count(
-        crossAxisCount: 6,
+        crossAxisCount: 2,
         itemCount: 5000,
         itemBuilder: (context, index) {
-          return Text("datasd");
+          return Container(
+            margin: EdgeInsets.all(5),
+            padding: EdgeInsets.all(5),
+            decoration: BoxDecoration(border: Border.all() , ),
+            child: index.isEven ? Text("kaushik") :  Text("kaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaush")
+          );
         },
       ),
     );

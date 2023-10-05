@@ -17,7 +17,7 @@ class _myCustomDrawerState extends State<myCustomDrawer> {
 
     return Drawer(
       child: Container(
-          color: Colors.black54,
+          color: Colors.black,
           child: SafeArea(
             child: Column(
               children: [
@@ -26,7 +26,7 @@ class _myCustomDrawerState extends State<myCustomDrawer> {
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.only(left: 30, top: 10),
                   child: const Text(
-                    "Google Keep",
+                    "My Keep",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
