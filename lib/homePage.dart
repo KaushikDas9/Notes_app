@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/CustomDrawer.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:notes_app/addNotePage.dart';
 
 class home extends StatefulWidget {
   const home({super.key});
@@ -99,12 +100,17 @@ class homeState extends State<home> {
         crossAxisCount: 2,
         itemCount: 5000,
         itemBuilder: (context, index) {
-          return Container(
-            margin:const EdgeInsets.all(5),
-            padding:const EdgeInsets.all(15),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),border: Border.all(width: .05,color: Colors.black87 ) ),
-            child:Column(crossAxisAlignment: CrossAxisAlignment.start, children: [ Text("Heading" , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)) ,index.isEven ? Text("kaushik") :  Text("kaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaush")
-          ]));
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => addNote(),));
+            },
+            child: Container(
+              margin:const EdgeInsets.all(5),
+              padding:const EdgeInsets.all(15),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),border: Border.all(width: .05,color: Colors.black87 ) ),
+              child:Column(crossAxisAlignment: CrossAxisAlignment.start, children: [ Text("Heading" , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)) ,index.isEven ? Text("kaushik") :  Text("kaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaush")
+            ])),
+          );
         },
       ),
     );
