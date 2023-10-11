@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/CustomDrawer.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:notes_app/SqlDatabase/databaseHelper.dart';
 import 'package:notes_app/addNotePage.dart';
+import 'package:notes_app/SqlDatabase/dataBaseModel.dart';
+
 
 class home extends StatefulWidget {
   const home({super.key});
@@ -11,8 +14,19 @@ class home extends StatefulWidget {
 }
 
 class homeState extends State<home> {
+  late List<Note> listnode=[];
   TextEditingController searchController = TextEditingController();
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
+
+
+ @override
+  void initState() {
+    // TODO: implement initState
+   createEntry(Note(pin: false, title: "ja kushi", content: "content err rki debo " , createdTime: DateTime.now()));
+   getAllNotes();
+  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +112,7 @@ class homeState extends State<home> {
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 2,
-        itemCount: 5000,
+        itemCount: listnode.length,
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
@@ -108,11 +122,39 @@ class homeState extends State<home> {
               margin:const EdgeInsets.all(5),
               padding:const EdgeInsets.all(15),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),border: Border.all(width: .05,color: Colors.black87 ) ),
-              child:Column(crossAxisAlignment: CrossAxisAlignment.start, children: [ Text("Heading" , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)) ,index.isEven ? Text("kaushik") :  Text("kaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaushikkaush")
+              child:Column(crossAxisAlignment: CrossAxisAlignment.start, children: [ Text(listnode[index].title , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)) ,Text(listnode[index].content) 
             ])),
           );
         },
       ),
     );
   }
+
+Future createEntry(Note note) async{
+  await DatabaseHelperclass.instance.insertEntry(note);
 }
+
+Future getAllNotes() async{
+  this.listnode =  await DatabaseHelperclass.instance.readAllNotes();
+print(listnode[0].toString());
+  setState(() {
+    // isLoading = false;
+  });
+}
+
+Future getOneNote(int id) async{
+  await DatabaseHelperclass.instance.readOneNote(id);
+  
+}
+
+Future updateOneNote(Note note) async{
+  await DatabaseHelperclass.instance.update(note);
+
+}
+
+Future deleteNote(Note note) async{
+  await DatabaseHelperclass.instance.deleteNode(note);
+}
+
+}
+
