@@ -26,7 +26,12 @@ class homeState extends State<home> {
    createEntry(Note(pin: false, title: "ja kushi", content: "content err rki debo " , createdTime: DateTime.now()));
    getAllNotes();
   }
- 
+ @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    DatabaseHelperclass.instance.closedb();
+  }
 
   @override
   Widget build(BuildContext context) {
