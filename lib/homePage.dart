@@ -13,7 +13,14 @@ class home extends StatefulWidget {
 }
 
 class homeState extends State<home> {
-  late List<Note> listnode ;
+
+  Note dummynote = Note(
+        pin: false,
+        title: "ja kushi",
+        content: "content err rki debo ",
+        createdTime: DateTime.now());
+
+  late List<Note> listnode=[] ;
   TextEditingController searchController = TextEditingController();
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
@@ -25,7 +32,10 @@ class homeState extends State<home> {
     //     title: "ja kushi",
     //     content: "content err rki debo ",
     //     createdTime: DateTime.now()));
-    getAllNotes();
+    setState(() {
+      getAllNotes();
+    });
+    
   }
 
   @override
@@ -126,7 +136,7 @@ class homeState extends State<home> {
             },
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => addNote(),
+                builder: (context) => addNote(note: listnode[index] ,index: index ),
               ));
             },
             child: Container(
@@ -180,7 +190,7 @@ class homeState extends State<home> {
         title: Text("Delete"),
         content: Text("Are you want to delete?"),
         actions: [
-          TextButton(onPressed: () {}, child: Text("NO")),
+          TextButton(onPressed: () {Navigator.pop(context);}, child: Text("NO")),
           TextButton(
               onPressed: () {
                 setState(() {
