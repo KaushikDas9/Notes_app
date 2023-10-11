@@ -11,6 +11,7 @@ static final List<String> values = [id ,pin,title,content,createdTime];
 
 
 class Note{
+
   final int? id;
   final bool pin;
   final String title;
@@ -42,7 +43,7 @@ DateTime? createdTime,
 
 
 
-  static Note fromJson(Map<String ,Object?> json){
+  static Note fromJson(Map<String ,Object?> json) {
     return Note(id: json[NotesImpNames.id] as int? , 
                 pin : json[NotesImpNames.pin] ==1,
                 title: json[NotesImpNames.title] as String,

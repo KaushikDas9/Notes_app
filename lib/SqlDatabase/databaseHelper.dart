@@ -1,10 +1,12 @@
+import 'dart:js_util';
+
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:notes_app/SqlDatabase/dataBaseModel.dart';
 
 class DatabaseHelperclass { 
 
- static  DatabaseHelperclass helperclassiInstance  =  DatabaseHelperclass._init();
+ static  DatabaseHelperclass instance  =  DatabaseHelperclass._init();
   static  Database? _database ;
 
    DatabaseHelperclass._init();
@@ -20,7 +22,7 @@ Future<Database?> get database async {
 Future<Database?> _initializedb(String pathfile) async { 
   final dbpath = await getDatabasesPath();
   final path = join(dbpath,pathfile);
-  return await openDatabase(path,version: 1 , onCreate: _oncreate());
+  return await openDatabase(path,version: 1 , onCreate: _oncreate);
 }
 
 Future _oncreate(Database db , int version ) async{ 
@@ -46,10 +48,29 @@ Future<Note?> insertEntry(Note note) async {
 }
 
 
-Future readAllNotes(Note note) async { 
-  final  orderby = "${NotesImpNames.createdTime} asc"
- await _database.query(NotesImpNames.TableName , orderBy: ) 
+Future<List<Note>> readAllNotes(Note note) async {
+ 
+  final  orderby = "${NotesImpNames.createdTime} asc " ;
+ final queryResult = await _database!.query(NotesImpNames.TableName , orderBy: orderby ) ;  
+return   queryResult.map((json) => Note.fromJson(json)).toList();
 }
 
+Future<List<Note>> readOneNote() async{ 
+   final db = await instance.database;
+   final  orderby = "${NotesImpNames.createdTime} asc " ;
+   final queryResult = await db!.query( NotesImpNames.TableName ,columns: [NotesImpNames.title.toString()] , orderBy: orderby ); 
+    return queryResult.map( (json) => Note.fromJson(json)).toList();   
+}
+
+Future<void> update (Note note) async { 
+  final db =await instance.database ; 
+  db?.update(NotesImpNames.TableName , note.toJson() ,where:  '${NotesImpNames.id} = ?' ,whereArgs: [note.id] );
+  
+}
+ 
+Future<void> closedb() async { 
+final db =  await instance.database;
+ db?.close();
+}
 
 }
