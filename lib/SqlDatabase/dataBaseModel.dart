@@ -14,11 +14,11 @@ class Note{
 
   final int? id;
   final bool pin;
-  final String title;
-  final String content;
+   String title;
+   String content;
   final DateTime createdTime;
 
- const Note({
+  Note({
 this.id,
 required this.pin,
 required this.title,

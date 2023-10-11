@@ -41,22 +41,16 @@ class _addNoteState extends State<addNote> {
           onEditingComplete: () {
             
              Note newNote = widget.note;
-             newNote.title + _headerController.text; 
+             newNote.title =  _headerController.text; 
               homeState().updateOneNote(newNote);
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => home(),
-              ));
+                print(newNote.title.toString());
+              // Navigator.of(context).pushReplacement(MaterialPageRoute(
+              //   builder: (context) => home(),
+              // ));
           
             
           },
-          onSubmitted: (value) {
-             Note newNote = widget.note;
-              newNote.title + value; 
-              homeState().updateOneNote(newNote);
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => home(),
-              ));
-          },
+          
           textInputAction:  TextInputAction.go ,
           
           decoration:

@@ -28,6 +28,8 @@ class homeState extends State<home> {
   @override
   void initState() {
     // TODO: implement initState
+
+    // createEntry(dummynote);
     setState(() {
       getAllNotes();
     });
@@ -41,7 +43,7 @@ class homeState extends State<home> {
       drawerEdgeDragWidth: MediaQuery.of(context).size.width * .4,
       key: _drawerKey,
       drawer: const myCustomDrawer(),
-       floatingActionButton: FloatingActionButton(onPressed: (){ Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => craateNew(), )) ; } , child: Icon(Icons.add)),
+       floatingActionButton: FloatingActionButton(onPressed: (){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => craateNew(), )) ; } , child: Icon(Icons.add)),
       
       body: SingleChildScrollView(
         child: Container(
