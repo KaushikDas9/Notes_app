@@ -5,7 +5,6 @@ import 'package:notes_app/SqlDatabase/databaseHelper.dart';
 import 'package:notes_app/addNotePage.dart';
 import 'package:notes_app/SqlDatabase/dataBaseModel.dart';
 
-
 class home extends StatefulWidget {
   const home({super.key});
 
@@ -14,19 +13,22 @@ class home extends StatefulWidget {
 }
 
 class homeState extends State<home> {
-  late List<Note> listnode=[];
+  late List<Note> listnode = [];
   TextEditingController searchController = TextEditingController();
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
-
-
- @override
+  @override
   void initState() {
     // TODO: implement initState
-   createEntry(Note(pin: false, title: "ja kushi", content: "content err rki debo " , createdTime: DateTime.now()));
-   getAllNotes();
+    createEntry(Note(
+        pin: false,
+        title: "ja kushi",
+        content: "content err rki debo ",
+        createdTime: DateTime.now()));
+    getAllNotes();
   }
- @override
+
+  @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
@@ -41,7 +43,6 @@ class homeState extends State<home> {
       drawer: const myCustomDrawer(),
       body: SingleChildScrollView(
         child: Container(
-        
           // height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(color: Colors.white),
@@ -55,7 +56,7 @@ class homeState extends State<home> {
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.only(left: 25,top:10),
+                padding: EdgeInsets.only(left: 25, top: 10),
                 child: Text("All"),
               ),
               myCustomGrid(),
@@ -120,46 +121,78 @@ class homeState extends State<home> {
         itemCount: listnode.length,
         itemBuilder: (context, index) {
           return InkWell(
+            onLongPress: () {
+              _showMyDialogBox(index);
+            },
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => addNote(),));
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => addNote(),
+              ));
             },
             child: Container(
-              margin:const EdgeInsets.all(5),
-              padding:const EdgeInsets.all(15),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),border: Border.all(width: .05,color: Colors.black87 ) ),
-              child:Column(crossAxisAlignment: CrossAxisAlignment.start, children: [ Text(listnode[index].title , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)) ,Text(listnode[index].content) 
-            ])),
+                margin: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(width: .05, color: Colors.black87)),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(listnode[index].title,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20)),
+                      Text(listnode[index].content)
+                    ])),
           );
         },
       ),
     );
   }
 
-Future createEntry(Note note) async{
-  await DatabaseHelperclass.instance.insertEntry(note);
+  Future createEntry(Note note) async {
+    await DatabaseHelperclass.instance.insertEntry(note);
+  }
+
+  Future getAllNotes() async {
+    this.listnode = await DatabaseHelperclass.instance.readAllNotes();
+    print(listnode[0].toString());
+    setState(() {
+      // isLoading = false;
+    });
+  }
+
+  Future getOneNote(int id) async {
+    await DatabaseHelperclass.instance.readOneNote(id);
+  }
+
+  Future updateOneNote(Note note) async {
+    await DatabaseHelperclass.instance.update(note);
+  }
+
+  Future deleteNote(int id) async {
+    await DatabaseHelperclass.instance.deleteNode(id);
+  }
+
+  Future _showMyDialogBox(int index) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text("Delete"),
+        content: Text("Are you want to delete?"),
+        actions: [
+          TextButton(onPressed: () {}, child: Text("NO")),
+          TextButton(
+              onPressed: () {
+                setState(() {
+                  deleteNote(index);
+                  getAllNotes();
+                  FocusManager.instance.primaryFocus!.unfocus();
+                });
+                
+              },
+              child: Text("YES"))
+        ],
+      ),
+    );
+  }
 }
-
-Future getAllNotes() async{
-  this.listnode =  await DatabaseHelperclass.instance.readAllNotes();
-print(listnode[0].toString());
-  setState(() {
-    // isLoading = false;
-  });
-}
-
-Future getOneNote(int id) async{
-  await DatabaseHelperclass.instance.readOneNote(id);
-  
-}
-
-Future updateOneNote(Note note) async{
-  await DatabaseHelperclass.instance.update(note);
-
-}
-
-Future deleteNote(Note note) async{
-  await DatabaseHelperclass.instance.deleteNode(note);
-}
-
-}
-

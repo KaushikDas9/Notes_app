@@ -67,9 +67,9 @@ Future<void> update (Note note) async {
   await db?.update(NotesImpNames.TableName , note.toJson() ,where:  '${NotesImpNames.id} = ?' ,whereArgs: [note.id] );
 }
 
-Future<void> deleteNode (Note note ) async { 
+Future<void> deleteNode (int id ) async { 
   final db =await instance.database ; 
-  await db?.delete(NotesImpNames.TableName ,  where:  '${NotesImpNames.id} = ?' ,whereArgs: [note.id] );
+  await db?.delete(NotesImpNames.TableName ,  where:  '${NotesImpNames.id} = ?' ,whereArgs: [id] );
 }
  
 Future<void> closedb() async { 
