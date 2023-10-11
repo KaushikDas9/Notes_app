@@ -21,8 +21,10 @@ class _addNoteState extends State<addNote> {
     // TODO: implement initState
     _headerController.text = widget.note.title ;
     _descriptionController.text = widget.note.content;
-    
+  print(widget.note.id.toString());
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +37,28 @@ class _addNoteState extends State<addNote> {
       ]),
       body: Column(children: [
          TextField(
+          controller: _headerController,
           onEditingComplete: () {
-            setState(() {
-              homeState().updateOneNote(widget.note);
-            });
+            
+             Note newNote = widget.note;
+             newNote.title + _headerController.text; 
+              homeState().updateOneNote(newNote);
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => home(),
+              ));
+          
             
           },
-          controller: _headerController,
+          onSubmitted: (value) {
+             Note newNote = widget.note;
+              newNote.title + value; 
+              homeState().updateOneNote(newNote);
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => home(),
+              ));
+          },
+          textInputAction:  TextInputAction.go ,
+          
           decoration:
               InputDecoration(hintText: "Title", border: InputBorder.none),
         ),

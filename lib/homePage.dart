@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:notes_app/SqlDatabase/databaseHelper.dart';
 import 'package:notes_app/addNotePage.dart';
 import 'package:notes_app/SqlDatabase/dataBaseModel.dart';
+import 'package:notes_app/createNewNote.dart';
 
 class home extends StatefulWidget {
   const home({super.key});
@@ -20,30 +21,19 @@ class homeState extends State<home> {
         content: "content err rki debo ",
         createdTime: DateTime.now());
 
-  late List<Note> listnode=[] ;
+  late List<Note> listnode =[] ;
   TextEditingController searchController = TextEditingController();
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   @override
   void initState() {
     // TODO: implement initState
-    // createEntry(Note(
-    //     pin: false,
-    //     title: "ja kushi",
-    //     content: "content err rki debo ",
-    //     createdTime: DateTime.now()));
     setState(() {
       getAllNotes();
     });
     
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    DatabaseHelperclass.instance.closedb();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +41,8 @@ class homeState extends State<home> {
       drawerEdgeDragWidth: MediaQuery.of(context).size.width * .4,
       key: _drawerKey,
       drawer: const myCustomDrawer(),
+       floatingActionButton: FloatingActionButton(onPressed: (){ Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => craateNew(), )) ; } , child: Icon(Icons.add)),
+      
       body: SingleChildScrollView(
         child: Container(
           // height: MediaQuery.of(context).size.height,
@@ -132,11 +124,11 @@ class homeState extends State<home> {
         itemBuilder: (context, index) {
           return InkWell(
             onLongPress: () {
-              _showMyDialogBox(index);
+              _showMyDialogBox(listnode[index].id!);
             },
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => addNote(note: listnode[index] ,index: index ),
+                builder: (context) => addNote(note: listnode[index] ,index:listnode[index].id!  ),
               ));
             },
             child: Container(
