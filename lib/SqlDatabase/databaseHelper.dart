@@ -71,6 +71,8 @@ Future<void> deleteNode (int id ) async {
   final db =await instance.database ; 
   await db?.delete(NotesImpNames.TableName ,  where:  '${NotesImpNames.id} = ?' ,whereArgs: [id] );
 }
+
+
  
 Future<void> closedb() async { 
 final db =  await instance.database;

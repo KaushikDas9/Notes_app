@@ -13,18 +13,18 @@ class home extends StatefulWidget {
 }
 
 class homeState extends State<home> {
-  late List<Note> listnode = [];
+  late List<Note> listnode ;
   TextEditingController searchController = TextEditingController();
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   @override
   void initState() {
     // TODO: implement initState
-    createEntry(Note(
-        pin: false,
-        title: "ja kushi",
-        content: "content err rki debo ",
-        createdTime: DateTime.now()));
+    // createEntry(Note(
+    //     pin: false,
+    //     title: "ja kushi",
+    //     content: "content err rki debo ",
+    //     createdTime: DateTime.now()));
     getAllNotes();
   }
 
@@ -186,7 +186,8 @@ class homeState extends State<home> {
                 setState(() {
                   deleteNote(index);
                   getAllNotes();
-                  FocusManager.instance.primaryFocus!.unfocus();
+                  Navigator.pop(context);
+                  // FocusManager.instance.primaryFocus!.unfocus();
                 });
                 
               },
