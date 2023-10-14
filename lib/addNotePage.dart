@@ -43,19 +43,27 @@ class _addNoteState extends State<addNote> {
             controller: _headerController,
             onEditingComplete: () {
               
+              if(widget.newAddPage){ 
+                homeState().createEntry(Note(pin: false, title: _headerController.text.toString(), content: _descriptionController.text.toString() , createdTime: DateTime.now()));
+                 Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => home(), )) ;
+              }
+              else{
                Note newNote = widget.note!;
                newNote.title =  _headerController.text; 
                 homeState().updateOneNote(newNote);
                   print(newNote.title.toString());
+                  }
                 // Navigator.of(context).pushReplacement(MaterialPageRoute(
                 //   builder: (context) => home(),
                 // ));
-            
+            },
+            onSubmitted: (value) {
+             
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => home(), )) ;
               
             },
             
             textInputAction:  TextInputAction.go ,
-            
             decoration:
                 InputDecoration(hintText: "Title", border: InputBorder.none),
                  ),
@@ -65,6 +73,28 @@ class _addNoteState extends State<addNote> {
           child: TextField(
             controller: _descriptionController,
             decoration: InputDecoration(hintText: "Description"),
+              onEditingComplete: () {
+              
+              if(widget.newAddPage){ 
+                homeState().createEntry(Note(pin: false, title: _headerController.text.toString(), content: _descriptionController.text.toString() , createdTime: DateTime.now()));
+                 Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => home(), )) ;
+              }
+              else{
+               Note newNote = widget.note!;
+               newNote.title =  _headerController.text; 
+                homeState().updateOneNote(newNote);
+                  print(newNote.title.toString());
+                  }
+                // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                //   builder: (context) => home(),
+                // ));
+            },
+             onSubmitted: (value) {
+              
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => home(), )) ;
+              
+            },
+           
           ),
         )
       ]),
