@@ -31,19 +31,22 @@ class _craateNewState extends State<craateNew> {
             decoration:
                 InputDecoration(hintText: "Title", border: InputBorder.none),
           ),
-          TextField(
-            controller: _descriptionController,
-            onEditingComplete: () {
-              
-             homeState().createEntry(Note(pin: false, title: _headerController.text, content: _descriptionController.text , createdTime: DateTime.now()));
-            },
-            onSubmitted: (value) {
-             
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => home(), )) ;
-              
-            },
-             textInputAction:  TextInputAction.go ,
-            decoration: InputDecoration(hintText: "Description"),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: TextField(
+              controller: _descriptionController,
+              onEditingComplete: () {
+                
+               homeState().createEntry(Note(pin: false, title: _headerController.text, content: _descriptionController.text , createdTime: DateTime.now()));
+              },
+              onSubmitted: (value) {
+               
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => home(), )) ;
+                
+              },
+               textInputAction:  TextInputAction.go ,
+              decoration: InputDecoration(hintText: "Description"),
+            ),
           )
         ]),
     ),);
