@@ -20,19 +20,22 @@ class _craateNewState extends State<craateNew> {
   Widget build(BuildContext context) {
     return Scaffold( body: SafeArea(
       child: Column(children: [
-           TextField(
-            controller: _headerController,
-            onEditingComplete: () {
+           Padding(
+             padding: const EdgeInsets.symmetric(horizontal: 10),
+             child: TextField(
+              controller: _headerController,
+              onEditingComplete: () {
+                
+               homeState().createEntry(Note(pin: false, title: _headerController.text, content: "", createdTime: DateTime.now()));
+              },
               
-             homeState().createEntry(Note(pin: false, title: _headerController.text, content: "", createdTime: DateTime.now()));
-            },
-            
-           
-            decoration:
-                InputDecoration(hintText: "Title", border: InputBorder.none),
-          ),
+             
+              decoration:
+                  InputDecoration(hintText: "Title", border: InputBorder.none),
+                     ),
+           ),
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextField(
               controller: _descriptionController,
               onEditingComplete: () {

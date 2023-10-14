@@ -3,8 +3,8 @@ import 'package:notes_app/SqlDatabase/dataBaseModel.dart';
 import 'package:notes_app/homePage.dart';
 
 class addNote extends StatefulWidget {
-  Note note ; int index;
-  addNote({ required this.note , required this.index });
+  Note? note ; int? index; bool newAddPage;
+  addNote({  this.note ,  this.index , required this.newAddPage });
 
   @override
   State<addNote> createState() => _addNoteState();
@@ -19,9 +19,10 @@ class _addNoteState extends State<addNote> {
 @override
   void initState() {
     // TODO: implement initState
-    _headerController.text = widget.note.title ;
-    _descriptionController.text = widget.note.content;
-  print(widget.note.id.toString());
+    if(!widget.newAddPage) {
+    _headerController.text = widget.note!.title ;
+    _descriptionController.text = widget.note!.content;}
+  
   }
 
 
@@ -36,29 +37,35 @@ class _addNoteState extends State<addNote> {
         IconButton(onPressed: () {}, icon: Icon(Icons.archive_outlined))
       ]),
       body: Column(children: [
-         TextField(
-          controller: _headerController,
-          onEditingComplete: () {
+         Padding(
+           padding: const EdgeInsets.symmetric(horizontal: 20),
+           child: TextField(
+            controller: _headerController,
+            onEditingComplete: () {
+              
+               Note newNote = widget.note!;
+               newNote.title =  _headerController.text; 
+                homeState().updateOneNote(newNote);
+                  print(newNote.title.toString());
+                // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                //   builder: (context) => home(),
+                // ));
             
-             Note newNote = widget.note;
-             newNote.title =  _headerController.text; 
-              homeState().updateOneNote(newNote);
-                print(newNote.title.toString());
-              // Navigator.of(context).pushReplacement(MaterialPageRoute(
-              //   builder: (context) => home(),
-              // ));
-          
+              
+            },
             
-          },
-          
-          textInputAction:  TextInputAction.go ,
-          
-          decoration:
-              InputDecoration(hintText: "Title", border: InputBorder.none),
-        ),
-        TextField(
-          controller: _descriptionController,
-          decoration: InputDecoration(hintText: "Description"),
+            textInputAction:  TextInputAction.go ,
+            
+            decoration:
+                InputDecoration(hintText: "Title", border: InputBorder.none),
+                 ),
+         ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: TextField(
+            controller: _descriptionController,
+            decoration: InputDecoration(hintText: "Description"),
+          ),
         )
       ]),
     );
