@@ -3,7 +3,7 @@ import 'package:notes_app/SqlDatabase/dataBaseModel.dart';
 import 'package:notes_app/homePage.dart';
 
 class addNote extends StatefulWidget {
-  Note? note ; int? index; bool newAddPage;
+  Note? note ; int? index; bool newAddPage=false;
   addNote({  this.note ,  this.index , required this.newAddPage });
 
   @override
