@@ -49,7 +49,8 @@ class _addNoteState extends State<addNote> {
               }
               else{
                Note newNote = widget.note!;
-               newNote.title =  _headerController.text; 
+               newNote.title =  _headerController.text.toString(); 
+               newNote.content = _descriptionController.text.toString();
                 homeState().updateOneNote(newNote);
                   print(newNote.title.toString());
                   }
@@ -81,7 +82,8 @@ class _addNoteState extends State<addNote> {
               }
               else{
                Note newNote = widget.note!;
-               newNote.title =  _headerController.text; 
+               newNote.title =  _headerController.text.toString(); 
+               newNote.content = _descriptionController.text.toString();
                 homeState().updateOneNote(newNote);
                   print(newNote.title.toString());
                   }
