@@ -117,7 +117,7 @@ class homeState extends State<home> {
     return Container(
       // color:  Colors.black,
       // height: MediaQuery.of(context).size.height * .845,
-      child: MasonryGridView.count(
+      child:listnode.length==0?Text("add some Notes"):MasonryGridView.count(
         padding: EdgeInsets.all(5),
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
