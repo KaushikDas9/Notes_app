@@ -38,7 +38,9 @@ class _craateNewState extends State<craateNew> {
              homeState().createEntry(Note(pin: false, title: _headerController.text, content: _descriptionController.text , createdTime: DateTime.now()));
             },
             onSubmitted: (value) {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => home(), )) ;
+             
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => home(), )) ;
+              
             },
              textInputAction:  TextInputAction.go ,
             decoration: InputDecoration(hintText: "Description"),

@@ -52,7 +52,7 @@ Future<List<Note>> readAllNotes() async {
  final db = await instance.database ;
   final  orderby = "${NotesImpNames.createdTime} asc " ;
  final queryResult = await db!.query(NotesImpNames.TableName , orderBy: orderby ) ;  
-return   queryResult.map((json) => Note.fromJson(json)).toList();
+return queryResult.map((json) => Note.fromJson(json)).toList();
 }
 
 Future<List<Note>> readOneNote(int id) async{ 

@@ -28,12 +28,8 @@ class homeState extends State<home> {
   @override
   void initState() {
     // TODO: implement initState
-
     // createEntry(dummynote);
-    setState(() {
       getAllNotes();
-    });
-    
   }
 
 
@@ -117,7 +113,7 @@ class homeState extends State<home> {
     return Container(
       // color:  Colors.black,
       // height: MediaQuery.of(context).size.height * .845,
-      child:listnode.length==0?Text("add some Notes"):MasonryGridView.count(
+      child:listnode.length==0?Text("data"):MasonryGridView.count(
         padding: EdgeInsets.all(5),
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
@@ -159,7 +155,7 @@ class homeState extends State<home> {
 
   Future getAllNotes() async {
     this.listnode = await DatabaseHelperclass.instance.readAllNotes();
-    print(listnode[0].toString());
+    // print(listnode[0].toString());
     setState(() {
       // isLoading = false;
     });
