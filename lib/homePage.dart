@@ -15,15 +15,18 @@ class home extends StatefulWidget {
 
 class homeState extends State<home> {
 
+  // All initilization part here
   Note dummynote = Note(
         pin: false,
         title: "ja kushi",
         content: "content err rki debo ",
         createdTime: DateTime.now());
-
   late List<Note> listnode =[] ;
   TextEditingController searchController = TextEditingController();
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+  bool typeOfGrid = true ;
+
+ // Here all State call
 
   @override
   void initState() {
@@ -33,6 +36,8 @@ class homeState extends State<home> {
   }
 
 
+
+//Build Function starts
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +57,8 @@ class homeState extends State<home> {
               SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+
+                  //Here I am stsblish my home page top SearchBar 
                   child: myCustomSearchBox(),
                 ),
               ),
@@ -59,7 +66,8 @@ class homeState extends State<home> {
                 padding: EdgeInsets.only(left: 25, top: 10),
                 child: Text("All"),
               ),
-              myCustomGrid(),
+              // This is the Stagged grid view and add a cool cheak when true it will call MyCustomGrid otherwiser ListTile 
+               typeOfGrid ? myCustomGrid() : Text("data") ,
             ],
           ),
         ),
@@ -67,6 +75,13 @@ class homeState extends State<home> {
     );
   }
 
+
+
+
+
+
+// Here I build all needed custom Widget that need according to app .
+// From next project I will add all this custom Widget all separate package .
   Widget myCustomSearchBox() {
     double height = MediaQuery.of(context).size.height;
     double widght = MediaQuery.of(context).size.width;
@@ -91,6 +106,9 @@ class homeState extends State<home> {
               children: [
                 IconButton(
                     onPressed: () {
+                      setState(() {
+                      typeOfGrid = !typeOfGrid ;  
+                      });
                       print("grid");
                     },
                     icon: Icon(Icons.grid_view)),
@@ -196,4 +214,12 @@ class homeState extends State<home> {
       ),
     );
   }
+
+ Widget myCustomListTile() { 
+  return ListView.builder(
+    itemCount: listnode.length,
+    itemBuilder: (context, index) {      
+     return ListTile(title: Text(listnode[index].title.toString()),subtitle: Text(listnode[index].content.toString()), contentPadding: EdgeInsets.all(10), );
+  },);
+ }
 }
