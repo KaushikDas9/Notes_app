@@ -3,7 +3,7 @@ import 'package:notes_app/SqlDatabase/dataBaseModel.dart';
 import 'package:notes_app/homePage.dart';
 
 class addNote extends StatefulWidget {
-  Note? note ; int? index; bool newAddPage=false;
+  Note? note ; int? index; bool newAddPage=false; 
   addNote({  this.note ,  this.index , required this.newAddPage });
 
   @override
@@ -58,10 +58,9 @@ class _addNoteState extends State<addNote> {
                 //   builder: (context) => home(),
                 // ));
             },
-            onSubmitted: (value) {
-             
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => home(), )) ;
-              
+            onSubmitted: (value) { 
+                        
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => home(), )) ;              
             },
             
             textInputAction:  TextInputAction.go ,

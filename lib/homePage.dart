@@ -33,6 +33,8 @@ class homeState extends State<home> {
     // TODO: implement initState
     // createEntry(dummynote);
       getAllNotes();
+       
+
   }
 
 
@@ -44,7 +46,8 @@ class homeState extends State<home> {
       drawerEdgeDragWidth: MediaQuery.of(context).size.width * .4,
       key: _drawerKey,
       drawer: const myCustomDrawer(),
-       floatingActionButton: FloatingActionButton(onPressed: (){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => addNote(newAddPage: true), )) ; } , child: Icon(Icons.add)),
+       floatingActionButton: FloatingActionButton(onPressed: (){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => addNote(newAddPage: true  ), )) ; } , child: Icon(Icons.add)),
+
       
       body: SingleChildScrollView(
         child: Container(
@@ -67,7 +70,7 @@ class homeState extends State<home> {
                 child: Text("All"),
               ),
               // This is the Stagged grid view and add a cool cheak when true it will call MyCustomGrid otherwiser ListTile 
-               typeOfGrid ? myCustomGrid() : Text("data") ,
+               typeOfGrid ? myCustomGrid() : myCustomListTile() ,
             ],
           ),
         ),
@@ -216,10 +219,13 @@ class homeState extends State<home> {
   }
 
  Widget myCustomListTile() { 
-  return ListView.builder(
-    itemCount: listnode.length,
-    itemBuilder: (context, index) {      
-     return ListTile(title: Text(listnode[index].title.toString()),subtitle: Text(listnode[index].content.toString()), contentPadding: EdgeInsets.all(10), );
-  },);
+  return SingleChildScrollView(
+    child: ListView.builder(
+      shrinkWrap: true,
+      itemCount: listnode.length,
+      itemBuilder: (context, index) {      
+       return Container(child: ListTile(title: Text(listnode[index].title.toString()),subtitle: Text(listnode[index].content.toString()), contentPadding: EdgeInsets.all(10), ));
+    },),
+  );
  }
 }
